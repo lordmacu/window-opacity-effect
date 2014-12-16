@@ -3,7 +3,6 @@ function doClick(e) {
 }
 
 function agrandar() {
-
 	var animation = Ti.UI.createAnimation();
 	animation.height = "410dp";
 	animation.bottom = "10dp";
@@ -19,13 +18,10 @@ function agrandar() {
 		animation.curve = Titanium.UI.ANIMATION_CURVE_EASE_OUT;
 		$.contenedorprueba.animate(animation);
 
-
-
-
 	});
-var animation = Ti.UI.createAnimation();
-			animation.backgroundColor = "#4Dffffff", animation.duration = 100;
-			$.contenedorsegundario.animate(animation);
+	var animation = Ti.UI.createAnimation();
+	animation.backgroundColor = "#4Dffffff", animation.duration = 100;
+	$.contenedorsegundario.animate(animation);
 }
 
 function pequeno() {
@@ -43,13 +39,13 @@ function pequeno() {
 		animation.backgroundColor = "#E6ff0000", animation.duration = 100;
 		animation.curve = Titanium.UI.ANIMATION_CURVE_EASE_OUT;
 		$.contenedorprueba.animate(animation);
-	
+
 	});
-	
+
 	var animation = Ti.UI.createAnimation();
-			animation.backgroundColor = "#00ffffff", animation.duration = 100;
-			$.contenedorsegundario.animate(animation);
-	
+	animation.backgroundColor = "#00ffffff", animation.duration = 100;
+	$.contenedorsegundario.animate(animation);
+
 }
 
 $.cont.open();

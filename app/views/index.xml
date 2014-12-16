@@ -1,12 +1,8 @@
 <Alloy>
 	<Window class="container"  id="cont">
 		<View width="100%" height="100%" id="contenedorsegundario">
-			
-	
-		<Button onClick="agrandar" top="10">Agrandar</Button>
-	<View id="contenedorprueba" onClick="pequeno">
-		
-	</View>
+			<Button onClick="agrandar" top="10">Agrandar</Button>
+			<View id="contenedorprueba" onClick="pequeno"></View>
 		</View>
 	</Window>
 </Alloy>
