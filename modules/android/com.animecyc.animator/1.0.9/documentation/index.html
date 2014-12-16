@@ -1,0 +1,117 @@
+<h1>TitaniumAnimator</h1>
+<p>A drop-in animation replacement for Titanium. This module's aim is to mimick as much of the Titanium animation module as possible with the addition of new timing functions and better performance. As of right now the only properties that can be animated are: <code>rotate</code>, <code>transform</code>, <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>, <code>width</code>, <code>height</code>, <code>opacity</code>, <code>color</code> and <code>backgroundColor</code>. The <code>transform</code> property are not support by Android at this time.</p>
+<h2>Support</h2>
+<ul>
+<li>iOS: iOS6+</li>
+<li>Android: 3.0+</li>
+</ul>
+<h2>Usage</h2>
+<p>```javascript
+var Animator = require('com.animecyc.animator'),
+    mainWindow = Ti.UI.createWindow({
+        backgroundColor : 'white'
+    }),
+    animationView = Ti.UI.createView({
+        backgroundColor : 'red',
+        width : 100,
+        height : 100
+    });</p>
+<p>animationView.addEventListener('click', function () {
+    Animator.animate(animationView, {
+        duration : 1000,
+        easing : Animator.BOUNCE_OUT,
+        width : 150,
+        height : 150,
+        backgroundColor : 'blue',
+        opacity : 0.5,
+        bottom : 0
+    }, function () {
+        Animator.animate(animationView, {
+            duration : 1000,
+            easing : Animator.BOUNCE_OUT,
+            width : 100,
+            height : 100,
+            backgroundColor : 'red',
+            opacity : 1,
+            bottom : null
+        });
+    });
+});</p>
+<p>mainWindow.add(animationView);
+mainWindow.open();
+```</p>
+<h2>Rotations</h2>
+<p>If you need to perform a rotation you can pass the <code>rotate</code> property which accepts a float. The <code>rotate</code> property is the angle you wish to rotate to; A positive value will result in a counter-clockwise rotation, while a negative value will result in a clockwise rotation.</p>
+<p>Once a rotation has been performed subsequent rotations will be performed from its last rotation angle. To simplify multiple rotations you can pass values &gt; 360. For example to do two complete rotations you can pass a value of 720.</p>
+<h2>Text Color (iOS)</h2>
+<p>In order to animate the text color of a Ti.UI.Label you must use a compatiable label replacement. You can get a simple version here: <a href="https://github.com/animecyc/TitaniumCoreLabel">TitaniumCoreLabel</a>.</p>
+<p>```javascript
+var CoreLabel = require('com.animecyc.corelabel'),
+    Animator = require('com.animecyc.animator'),
+    testLabel = CoreLabel.createLabel({
+        color : 'black',
+        font : {
+            fontSize : 15
+        }
+    });</p>
+<p>Animator.animate(testLabel, {
+    color : 'blue',
+    duration : 500
+});
+```</p>
+<blockquote>
+<p>The only property that can be animated on a label created via CoreLabel is the <code>color</code> property. The <code>font</code> property is forthcoming.</p>
+</blockquote>
+<h2>Layout Support (iOS)</h2>
+<p>When animating views in a horizontal or vertical layout sibling views will <em>pop</em> into place as opposed to animating to the correct position. You can pass the <code>siblings</code> flag to the animation properties to ensure that all sibling views animate to their correct location. By default this flag is set to <code>false</code>.</p>
+<blockquote>
+<p>There is the possibility of a hit in performace when animating large quantities of sibling views together.</p>
+</blockquote>
+<h2><a href="https://github.com/animecyc/TiDraggable">TiDraggable</a> Support (iOS)</h2>
+<p>If the view you're animating is a view touched by <a href="https://github.com/animecyc/TiDraggable">TiDraggable</a> module you can perform a tandem animation; All attached proxies will be animated at the same time within the supplied constraints.</p>
+<p><code>javascript
+Animator.animate(animationView, {
+    duration : 1000,
+    easing : Animator.BOUNCE_OUT,
+    left : 250,
+    draggable : {
+        x : 'end'
+    }
+});</code></p>
+<p>Given the above usage example, if the view being animated has views "attached" to it, via the <code>maps</code> declaration, you can have them animate their position into place as if it were being panned. This creates a fluid expirience for situations where you need to have both drag and drop support and animations between multiple related views.</p>
+<p>Both <code>draggable</code> property axes (x &amp; y) support the use of either a string representing the key used for the axis constraint on the draggable configuration or an integer for custom arrangements.</p>
+<h2>Easing Functions</h2>
+<p>The below easing functions can be accessed as you would any other Titanium constant. Assuming the above usage example you can access all of these by passing the below name to the module, such as in: <code>Animator.ELASTIC_IN_OUT</code></p>
+<ul>
+<li>LINEAR (default)</li>
+<li>QUAD_IN</li>
+<li>QUAD_OUT</li>
+<li>QUAD_IN_OUT</li>
+<li>CUBIC_IN</li>
+<li>CUBIC_OUT</li>
+<li>CUBIC_IN_OUT</li>
+<li>QUART_IN</li>
+<li>QUART_OUT</li>
+<li>QUART_IN_OUT</li>
+<li>QUINT_IN</li>
+<li>QUINT_OUT</li>
+<li>QUINT_IN_OUT</li>
+<li>SINE_IN</li>
+<li>SINE_OUT</li>
+<li>SINE_IN_OUT</li>
+<li>CIRC_IN</li>
+<li>CIRC_OUT</li>
+<li>CIRC_IN_OUT</li>
+<li>EXP_IN</li>
+<li>EXP_OUT</li>
+<li>EXP_IN_OUT</li>
+<li>ELASTIC_IN</li>
+<li>ELASTIC_OUT</li>
+<li>ELASTIC_IN_OUT</li>
+<li>BACK_IN</li>
+<li>BACK_OUT</li>
+<li>BACK_IN_OUT</li>
+<li>BOUNCE_IN</li>
+<li>BOUNCE_OUT</li>
+<li>BOUNCE_IN_OUT</li>
+</ul>

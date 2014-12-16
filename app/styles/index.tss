@@ -1,0 +1,31 @@
+".container": {
+	backgroundColor:"white"
+}
+
+"Label": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	color: "#000"
+}
+
+"#label": {
+	font: {
+		fontSize: 12
+	}
+}
+
+"#cont":{
+		backgroundImage:"/img/lampadas-wallpaper.jpg",
+
+}
+
+
+"#contenedorprueba":{
+	height:"100dp",
+	borderColor:"gray",
+	borderWidth:1,
+	bottom:"50dp",
+	backgroundColor:"#E6ff0000",
+	width:"90%"
+	
+}
